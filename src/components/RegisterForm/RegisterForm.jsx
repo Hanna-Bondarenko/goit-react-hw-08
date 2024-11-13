@@ -1,24 +1,28 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/operations";
-import { LoginSchema } from "../../shemas";
-import styles from "./LoginForm.module.css";
+import { register } from "../../redux/auth/operations";
+import { RegisterSchema } from "../../shemas";
+import styles from "./RegisterForm.module.css";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(login(values));
+    dispatch(register(values));
     resetForm();
   };
 
   return (
     <Formik
-      initialValues={{ email: "", password: "" }}
-      validationSchema={LoginSchema}
+      initialValues={{ name: "", email: "", password: "" }}
+      validationSchema={RegisterSchema}
       onSubmit={handleSubmit}
     >
       <Form className={styles.form}>
+        <label htmlFor="name">Name</label>
+        <Field id="name" name="name" type="text" />
+        <ErrorMessage name="name" component="div" />
+
         <label htmlFor="email">Email</label>
         <Field id="email" name="email" type="email" />
         <ErrorMessage name="email" component="div" />
@@ -28,11 +32,11 @@ const LoginForm = () => {
         <ErrorMessage name="password" component="div" />
 
         <button type="submit" className={styles.button}>
-          Log In
+          Register
         </button>
       </Form>
     </Formik>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

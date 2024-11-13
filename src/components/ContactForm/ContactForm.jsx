@@ -1,17 +1,8 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-
-import styles from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
-
-const validationSchema = Yup.object({
-  name: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  number: Yup.string().min(7, "Too Short!").required("Required"),
-});
+import { addContact } from "../../redux/contacts/operations";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { AddProfileSchema } from "../../shemas";
+import styles from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -23,22 +14,21 @@ const ContactForm = () => {
 
   return (
     <Formik
-      initialValues={{ name: "", number: "" }}
-      validationSchema={validationSchema}
+      initialValues={{ name: "", phone: "" }}
+      validationSchema={AddProfileSchema}
       onSubmit={handleSubmit}
     >
       <Form className={styles.form}>
-        <div className={styles.input}>
-          <label htmlFor="name">Name</label>
-          <Field id="name" name="name" type="text" />
-          <ErrorMessage name="name" component="div" />
+        <label htmlFor="name">Name</label>
+        <Field id="name" name="name" type="text" />
+        <ErrorMessage name="name" component="div" />
 
-          <label htmlFor="number">Number</label>
-          <Field id="number" name="number" type="tel" />
-          <ErrorMessage name="number" component="div" />
-        </div>
-        <button className={styles.button} type="submit">
-          Add contact
+        <label htmlFor="phone">Phone</label>
+        <Field id="phone" name="phone" type="tel" />
+        <ErrorMessage name="phone" component="div" />
+
+        <button type="submit" className={styles.button}>
+          Add Contact
         </button>
       </Form>
     </Formik>
