@@ -31,3 +31,25 @@ export const SearchProductsSchema = Yup.object({
     .required("Search term is required")
     .min(2, "Search term must be at least 2 characters"),
 });
+
+export const RegisterSchema = Yup.object({
+  name: Yup.string()
+    .min(3, "Name must be at least 3 characters")
+    .max(20, "Name must be less than 20 characters")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
+
+export const LoginSchema = Yup.object({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
