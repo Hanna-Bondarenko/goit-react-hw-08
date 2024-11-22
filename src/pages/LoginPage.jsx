@@ -1,10 +1,14 @@
+import DocumentTitle from "../components/DocumentTitle";
 import LoginForm from "../components/LoginForm/LoginForm";
+import Section from "../components/Section/Section";
 
-export default function LoginPage() {
+const LoginPage = () => {
   return (
-    <div>
-      <h2>Login</h2>
+    <Section>
+      <DocumentTitle>Login</DocumentTitle>
       <LoginForm />
-    </div>
+    </Section>
   );
-}
+};
+
+export default LoginPage;

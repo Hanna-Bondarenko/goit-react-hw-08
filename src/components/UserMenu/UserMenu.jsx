@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/operations";
 import { selectUser } from "../../redux/auth/selectors";
+import { Button } from "@mui/material"; // Додано компонент Material-UI
 import styles from "./UserMenu.module.css";
 
 export const UserMenu = () => {
@@ -9,10 +10,14 @@ export const UserMenu = () => {
 
   return (
     <div className={styles.userMenu}>
-      <span className={styles.username}>Welcome, {user.name}</span>
-      <button onClick={() => dispatch(logout())} className={styles.button}>
-        Logout
-      </button>
+      <p className={styles.username}>Welcome, {user.name}</p>
+      <Button
+        onClick={() => dispatch(logout())}
+        style={{ backgroundColor: "rgb(158, 202, 248)", color: "white" }}
+        variant="contained" // Додаємо стиль кнопки "contained"
+      >
+        LogOut
+      </Button>
     </div>
   );
 };

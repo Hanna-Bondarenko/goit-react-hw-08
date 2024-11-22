@@ -1,0 +1,11 @@
+.activeLink {
+  font-weight: bold;
+  color: #4caf50; /* Зелений для активного посилання */
+  text-decoration: underline;
+}
+
+.inactiveLink {
+  font-weight: normal;
+  color: #555; /* Сірий для неактивного посилання */
+  text-decoration: none;
+}

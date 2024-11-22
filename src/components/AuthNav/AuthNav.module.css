@@ -1,13 +1,11 @@
-.authNav {
-  display: flex;
-  gap: 10px;
-}
-
 .link {
-  color: #007bff;
+  display: inline-block;
   text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #2a363b;
 }
 
 .link.active {
-  font-weight: bold;
+  color: #e84a5f;
 }

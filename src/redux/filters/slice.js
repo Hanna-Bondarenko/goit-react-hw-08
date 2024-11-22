@@ -2,15 +2,23 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState: { name: "" },
+  initialState: {
+    name: "",
+    sort: "default",
+  },
   reducers: {
-    changeFilter(state, action) {
-      state.name = action.payload;
+    changeFilter(state, { payload }) {
+      state.name = payload; // Оновлюємо значення фільтра
+    },
+    changeSortType(state, { payload }) {
+      state.sort = payload; // Оновлюємо тип сортування
     },
   },
 });
 
-export const { changeFilter } = filtersSlice.actions;
-export const filtersReducer = filtersSlice.reducer;
+// Експорт дій
+export const { changeFilter, changeSortType } = filtersSlice.actions;
 
-export const selectNameFilter = (state) => state.filters.name;
+// Експорт ред'юсера
+export const filtersReducer = filtersSlice.reducer;
+// Селектор для типу сортування

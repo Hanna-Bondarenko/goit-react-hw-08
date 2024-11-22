@@ -1,0 +1,12 @@
+.section {
+  padding: 15px 25px;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("../../assets/bloknot.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  border-radius: 5px;
+}
