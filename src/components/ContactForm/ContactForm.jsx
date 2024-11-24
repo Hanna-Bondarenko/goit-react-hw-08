@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { addContact } from "../../redux/contacts/operations";
-import { AddProfileSchema } from "../../util/schemas";
+import { addProfileSchema } from "../../util/schemas";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./ContactForm.module.css";
 
@@ -25,7 +25,7 @@ const ContactForm = () => {
       <Toaster position="top-center" reverseOrder={false} />
       <Formik
         initialValues={{ name: "", phone: "" }}
-        validationSchema={AddProfileSchema}
+        validationSchema={addProfileSchema}
         onSubmit={handleSubmit}
       >
         <Form className={styles.form}>
