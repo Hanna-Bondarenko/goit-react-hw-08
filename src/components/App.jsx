@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 
 const pages = {
   HomePage: lazy(() => import("../pages/HomePage")),
-  RegisterPage: lazy(() => import("../pages/RegistrationPage")),
+  RegistrationPage: lazy(() => import("../pages/RegistrationPage")),
   LoginPage: lazy(() => import("../pages/LoginPage")),
   ContactsPage: lazy(() => import("../pages/ContactsPage")),
 };
@@ -21,7 +21,7 @@ const routes = [
     path: "/register",
     element: (
       <RestrictedRoute redirectTo="/contacts">
-        <pages.RegisterPage />
+        <pages.RegistrationPage />
       </RestrictedRoute>
     ),
   },
@@ -43,7 +43,7 @@ const routes = [
   },
 ];
 
-const App = () => {
+export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
@@ -78,5 +78,3 @@ const App = () => {
     </>
   );
 };
-
-export default App;

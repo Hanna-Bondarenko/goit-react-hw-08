@@ -4,7 +4,7 @@
   text-decoration: underline;
 }
 
-.inactiveLink {
+.link {
   font-weight: normal;
   color: #555; /* Сірий для неактивного посилання */
   text-decoration: none;

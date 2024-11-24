@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { addContact } from "../../redux/contacts/operations";
-import { AddProfileSchema } from "../../util/shemas";
+import { AddProfileSchema } from "../../util/schemas";
 import toast, { Toaster } from "react-hot-toast";
 import styles from "./ContactForm.module.css";
 

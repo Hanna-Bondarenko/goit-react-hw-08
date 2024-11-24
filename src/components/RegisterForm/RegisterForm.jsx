@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
-import { RegisterSchema } from "../../util/shemas";
+import { registerSchema } from "../../util/schemas";
 import styles from "./RegisterForm.module.css";
 
 const RegisterForm = () => {
@@ -15,7 +15,7 @@ const RegisterForm = () => {
   return (
     <Formik
       initialValues={{ name: "", email: "", password: "" }}
-      validationSchema={RegisterSchema}
+      validationSchema={registerSchema}
       onSubmit={handleSubmit}
     >
       <Form className={styles.form}>

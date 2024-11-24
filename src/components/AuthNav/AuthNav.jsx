@@ -3,7 +3,7 @@ import styles from "./AuthNav.module.css";
 
 export const AuthNav = () => {
   return (
-    <nav>
+    <nav className={styles.nav}>
       <NavLink
         to="/register"
         className={({ isActive }) => (isActive ? styles.active : styles.link)}

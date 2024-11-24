@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
-import { loginSchema } from "../../util/formHelper"; // Схема валідації
+import { loginSchema } from "../../util/schemas"; // Схема валідації
 import styles from "./LoginForm.module.css"; // Підключення стилів
 
 const LoginForm = () => {
@@ -21,6 +21,8 @@ const LoginForm = () => {
     resetForm();
   };
 
+  console.log("Rendering LoginForm");
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }} // Початкові значення
@@ -28,37 +30,33 @@ const LoginForm = () => {
       validationSchema={loginSchema} // Схема валідації
     >
       <Form className={styles.form}>
-        <div className={styles.fieldWrapper}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
-          <Field
-            id="email"
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            className={styles.input}
-          />
-          <ErrorMessage name="email" component="div" className={styles.error} />
-        </div>
+        <label htmlFor="email" className={styles.label}>
+          Email
+        </label>
+        <Field
+          id="email"
+          name="email"
+          type="email"
+          placeholder="Enter your email"
+          className={styles.input}
+        />
+        <ErrorMessage name="email" component="div" className={styles.error} />
 
-        <div className={styles.fieldWrapper}>
-          <label htmlFor="password" className={styles.label}>
-            Password
-          </label>
-          <Field
-            id="password"
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            className={styles.input}
-          />
-          <ErrorMessage
-            name="password"
-            component="div"
-            className={styles.error}
-          />
-        </div>
+        <label htmlFor="password" className={styles.label}>
+          Password
+        </label>
+        <Field
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          className={styles.input}
+        />
+        <ErrorMessage
+          name="password"
+          component="div"
+          className={styles.error}
+        />
 
         <button type="submit" className={styles.button}>
           Log In

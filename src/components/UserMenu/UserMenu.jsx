@@ -10,7 +10,7 @@ export const UserMenu = () => {
 
   return (
     <div className={styles.userMenu}>
-      <p className={styles.username}>Welcome, {user.name}</p>
+      <p className={styles.username}>Welcome, {user?.name || "Guest"}</p>
       <Button
         onClick={() => dispatch(logout())}
         style={{ backgroundColor: "rgb(158, 202, 248)", color: "white" }}
