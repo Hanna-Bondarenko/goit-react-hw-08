@@ -3,9 +3,11 @@ import { authInstance } from "../../api"; // Використання налаш
 
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
+
   async (_, thunkAPI) => {
     try {
       const response = await authInstance.get("/contacts");
+
       return response.data; // Повертаємо отримані дані
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -16,10 +18,16 @@ export const fetchContacts = createAsyncThunk(
 export const addContact = createAsyncThunk(
   "contacts/addContact",
   async (contact, thunkAPI) => {
+    console.log("Data being sent to API:", contact);
     try {
       const response = await authInstance.post("/contacts", contact);
-      return response.data; // Повертаємо доданий контакт
+      console.log("Response from API:", response.data);
+      return response.data;
     } catch (error) {
+      console.error(
+        "Error response from API:",
+        error.response?.data || error.message
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   }

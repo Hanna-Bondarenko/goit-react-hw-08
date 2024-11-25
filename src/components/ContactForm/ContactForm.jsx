@@ -1,15 +1,18 @@
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { addContact } from "../../redux/contacts/operations";
 import { addProfileSchema } from "../../util/schemas";
 import toast, { Toaster } from "react-hot-toast";
+import { Button, TextField } from "@mui/material"; // Додано компоненти MUI
 import styles from "./ContactForm.module.css";
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    dispatch(addContact(values))
+    const formattedValues = { ...values, number: values.phone };
+    delete formattedValues.phone; // Якщо API очікує `number`
+    dispatch(addContact(formattedValues))
       .unwrap()
       .then(() => {
         toast.success("Contact added successfully!");
@@ -28,42 +31,52 @@ const ContactForm = () => {
         validationSchema={addProfileSchema}
         onSubmit={handleSubmit}
       >
-        <Form className={styles.form}>
-          <div className={styles.row}>
-            <label htmlFor="name" className={styles.text}>
-              Name:
-            </label>
-            <Field id="name" name="name" type="text" className={styles.input} />
-            <ErrorMessage
-              name="name"
-              component="div"
-              className={styles.error}
-            />
-          </div>
+        {({ handleChange, values }) => (
+          <Form className={styles.form}>
+            <div className={styles.row}>
+              <TextField
+                label="Name"
+                name="name"
+                variant="outlined"
+                fullWidth
+                value={values.name}
+                onChange={handleChange} // Прив'язуємо значення до Formik
+              />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          <div className={styles.row}>
-            <label htmlFor="phone" className={styles.text}>
-              Phone:
-            </label>
-            <Field
-              id="phone"
-              name="phone"
-              type="tel"
-              className={styles.input}
-            />
-            <ErrorMessage
-              name="phone"
-              component="div"
-              className={styles.error}
-            />
-          </div>
+            <div className={styles.row}>
+              <TextField
+                label="Phone"
+                name="phone"
+                variant="outlined"
+                fullWidth
+                value={values.phone}
+                onChange={handleChange} // Прив'язуємо значення до Formik
+              />
+              <ErrorMessage
+                name="phone"
+                component="div"
+                className={styles.error}
+              />
+            </div>
 
-          <div className={styles.btnBox}>
-            <button type="submit" className={styles.btn}>
-              Add Contact
-            </button>
-          </div>
-        </Form>
+            <div className={styles.btnBox}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+              >
+                Add Contact
+              </Button>
+            </div>
+          </Form>
+        )}
       </Formik>
     </div>
   );

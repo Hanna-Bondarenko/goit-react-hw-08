@@ -35,10 +35,10 @@ const contactsSlice = createSlice({
       .addCase(addContact.rejected, handleRejected)
       // Delete Contact
       .addCase(deleteContact.pending, handlePending)
-      .addCase(deleteContact.fulfilled, (state, { payload: { id } }) => {
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.error = null;
-        state.items = state.items.filter((item) => item.id !== id);
+        state.items = state.items.filter((item) => item.id !== payload);
         toast.error("Contact successfully deleted!");
       })
       .addCase(deleteContact.rejected, handleRejected)

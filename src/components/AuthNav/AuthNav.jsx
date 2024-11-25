@@ -1,21 +1,45 @@
 import { NavLink } from "react-router-dom";
-import styles from "./AuthNav.module.css";
+import { Button, Box } from "@mui/material";
 
 export const AuthNav = () => {
   return (
-    <nav className={styles.nav}>
-      <NavLink
+    <Box sx={{ display: "flex", gap: "10px" }}>
+      <Button
+        component={NavLink}
         to="/register"
-        className={({ isActive }) => (isActive ? styles.active : styles.link)}
+        variant="contained"
+        sx={{
+          textTransform: "none",
+          backgroundColor: "rgb(158, 202, 248)", // Основний колір
+          color: "white",
+          "&:hover": {
+            backgroundColor: "rgb(137, 180, 223)", // Колір при наведенні
+          },
+          "&.active": {
+            backgroundColor: "rgb(120, 160, 210)", // Колір для активного стану
+          },
+        }}
       >
         Register
-      </NavLink>
-      <NavLink
+      </Button>
+      <Button
+        component={NavLink}
         to="/login"
-        className={({ isActive }) => (isActive ? styles.active : styles.link)}
+        variant="contained"
+        sx={{
+          textTransform: "none",
+          backgroundColor: "rgb(158, 202, 248)", // Основний колір
+          color: "white",
+          "&:hover": {
+            backgroundColor: "rgb(137, 180, 223)", // Колір при наведенні
+          },
+          "&.active": {
+            backgroundColor: "rgb(120, 160, 210)", // Колір для активного стану
+          },
+        }}
       >
         Log In
-      </NavLink>
-    </nav>
+      </Button>
+    </Box>
   );
 };

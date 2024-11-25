@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import { refreshUser } from "../redux/auth/operations";
 import { selectIsRefreshing } from "../redux/auth/selectors";
 import { Toaster } from "react-hot-toast";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 const pages = {
   HomePage: lazy(() => import("../pages/HomePage")),
@@ -52,29 +53,79 @@ export const App = () => {
   }, [dispatch]);
 
   if (isRefreshing) {
-    return <b className="refreshing">Refreshing user...</b>;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          backgroundColor: "#f5f5f5",
+        }}
+      >
+        <Typography variant="h6" component="div" color="textSecondary">
+          Refreshing user...
+        </Typography>
+      </Box>
+    );
   }
 
   return (
-    <>
-      <Layout>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: "#f5f5f5",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Suspense
+        fallback={
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100vh",
+            }}
+          >
+            <CircularProgress />
+          </Box>
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Layout />}>
             {routes.map(({ path, element }) => (
               <Route key={path} path={path} element={element} />
             ))}
-          </Routes>
-        </Suspense>
-      </Layout>
+          </Route>
+        </Routes>
+      </Suspense>
+
       <Toaster
         position="top-right"
         reverseOrder={false}
-        containerStyle={{ top: 67, right: 25 }}
+        containerStyle={{
+          top: "80px",
+          right: "25px",
+        }}
         toastOptions={{
-          success: { style: { background: "#e6f5d0" } },
-          error: { icon: "❌", style: { background: "#f0a7a1" } },
+          success: {
+            style: {
+              background: "#e6f5d0",
+              color: "#333",
+              fontWeight: "bold",
+            },
+          },
+          error: {
+            icon: "❌",
+            style: {
+              background: "#f0a7a1",
+              color: "#333",
+            },
+          },
         }}
       />
-    </>
+    </Box>
   );
 };
